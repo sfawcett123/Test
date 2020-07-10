@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.trial.outputs.test }}
+      trial: ${{ steps.trial.outputs.test }}
       
     steps:
     - uses: actions/checkout@v2
@@ -26,7 +26,7 @@ jobs:
       
     - name: Read
       id: trial
-      run: echo ${{needs.build.outputs.jobs.steps.trial.outputs.name}}
+      run: echo ${{needs.build.outputs.trial}}
     
     - name: Dump context
       env:
