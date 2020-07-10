@@ -25,3 +25,8 @@ jobs:
     - name: Read
       id: trial
       run: echo ${{needs.build.outputs.jobs.steps.trial.outputs.name}}
+    
+    - name: Dump context
+      env:
+        NEEDS_CONTEXT: ${{ toJson(needs) }}
+      run: echo "$NEEDS_CONTEXT"
