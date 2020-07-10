@@ -8,12 +8,20 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
       
     - name: Populate
-      id: sha
+      id: trial
       run: echo ::set-output name=short::"This is in Build"
+
+  test:
+    runs-on: ubuntu-latest
+    needs:  build
+    steps:
+      
+    - name: Read
+      id: trial
+      run: echo ${{needs.build.outputs.jobs.steps.trial.outputs.name}}
