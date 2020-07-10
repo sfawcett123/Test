@@ -15,7 +15,7 @@ jobs:
       
     - name: Populate
       id: trial
-      run: echo ::set-output name=short::"This is in Build"
+      run: Write-Output "::set-output name=short::this is in build"
 
   test:
     runs-on: ubuntu-latest
