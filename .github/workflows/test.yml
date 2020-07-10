@@ -9,13 +9,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    outputs:
+      output1: ${{ steps.trial.outputs.test }}
+      
     steps:
     - uses: actions/checkout@v2
       
     - name: Populate
       id: trial
-      run: Write-Output "::set-output name=short::this is in build"
+      run: echo "::set-output name=test::hello"
 
   test:
     runs-on: ubuntu-latest
