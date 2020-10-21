@@ -1,6 +1,7 @@
 name: Test
 
 on:
+  release:
   push:
     branches: [ master ]
   pull_request:
