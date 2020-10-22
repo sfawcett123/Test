@@ -12,9 +12,9 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Create Release Tag
-        id: tag
+        id: tagz
         run: |
-             echo ::set-output name=sha_short::$(echo $GITHUB_SHA | cut -c -7)
+             echo ::set-output name=short::$(echo $GITHUB_SHA | cut -c -7)
                
       - name: Create Release
         id: create_release
@@ -22,7 +22,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ steps.tag.outputs.name }}
+          tag_name: ${{ steps.tagz.outputs.short }}
           release_name: Release ${{ github.ref }}
           body: |
             Changes in this Release
