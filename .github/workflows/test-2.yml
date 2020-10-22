@@ -1,11 +1,7 @@
-name: Test
+name: Run Release
 
 on:
   release:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
   workflow_dispatch:
 
 jobs:
