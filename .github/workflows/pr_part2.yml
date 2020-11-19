@@ -1,4 +1,4 @@
-name: part2
+name: Part2
 on:
   workflow_dispatch:
     inputs:
