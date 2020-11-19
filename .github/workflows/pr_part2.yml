@@ -1,0 +1,29 @@
+name: part2
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'The environment to deploy to Development/Test/Production/Review etc'
+        required: true
+      sha:
+        description: 'Commit sha to be deployed'
+        required: true
+      pr:
+        description: 'Pull Request Reference'
+        required: false
+      title:
+        description: 'Pull Request Title'
+        required: false
+
+env:
+  APP_REPOSITORY:  dfedigital/get-teacher-training-adviser-service
+  CONTAINER:       get-teacher-training-adviser-service
+  DOMAIN:          london.cloudapps.digital
+
+jobs:
+  deploy:
+    name: 'Deploy ${{ github.event.inputs.environment }}'
+    runs-on: ubuntu-latest
+    steps:
+       - name: Test
+         run:  echo ${{github.event.inputs.environment}}
