@@ -1,0 +1,18 @@
+name: Pull Request Test
+
+on:
+  pull_request:
+    types: opened
+
+jobs:
+  add_labels:
+    runs-on: ubuntu-latest
+    steps:     
+     - name: Trigger Review Deployment
+        if: github.ref != 'refs/heads/master'
+        uses: benc-uk/workflow-dispatch@v1.1
+        with:
+          workflow: Part2
+          token: ${{ secrets.ACTIONS_API_ACCESS_TOKEN }}
+          inputs: '{"environment": "Review", "sha": "${{ github.sha }}" , "pr": "${{github.event.number}}" , "title": "${{github.event.pull_request.title}}" }'
+          ref: ${{ github.event.pull_request.head.ref }}
