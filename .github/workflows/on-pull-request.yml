@@ -15,4 +15,4 @@ jobs:
           workflow: Part2
           token: ${{ secrets.ACTIONS_API_ACCESS_TOKEN }}
           inputs: '{"environment": "Review", "sha": "${{ github.sha }}" , "pr": "${{github.event.number}}" , "title": "${{github.event.pull_request.title}}" }'
-          ref: ${{ github.event.pull_request.head.ref }}
+
