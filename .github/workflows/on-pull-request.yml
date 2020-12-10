@@ -13,6 +13,4 @@ jobs:
     steps:     
       - name: Trigger Review Deployment
         run: |
-             echo ${{github.event.number}}
-             echo ${{github.event.type}}
-             echo $${github.event.message }}
+             echo ${GITHUB_CONTEXT}
