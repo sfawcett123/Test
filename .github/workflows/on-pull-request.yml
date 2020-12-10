@@ -37,3 +37,8 @@ jobs:
               echo ::set-output name=changelog::"${BODY}"
            fi
            echo ::set-output name=sha::"${{github.sha}}"
+      
+      - name: Outputs
+        run:  |
+              echo "TAG = ${{steps.tag_version.outputs.tag}}"
+              echo "BODY = ${{teps.tag_version.outputs.body}}"
