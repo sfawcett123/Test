@@ -13,7 +13,7 @@ jobs:
        
      - name: Generate Tag from PR Number
        id:   tag_version
-       uses: DFE-Digital/github-actions/GenerateReleaseFromSHA/action.yml@master
+       uses: DFE-Digital/github-actions/GenerateReleaseFromSHA@master
        with:
          sha: ${{github.sha}}
                
