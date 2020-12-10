@@ -17,5 +17,5 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: RUNNNNNNNN
         run: |
-             num=$(curl -s -X GET "https://api.github.com/${{github.repository}}/pulls?state=all" | jq '.[] | select( .merge_commit_sha == "191a80edf7ef53f43b7f7d98c7a6bcc24372ba65" ) | .number')
+             num=$(curl -s -X GET "https://api.github.com/repos/${{github.repository}}/pulls?state=all" | jq '.[] | select( .merge_commit_sha == "191a80edf7ef53f43b7f7d98c7a6bcc24372ba65" ) | .number')
 
