@@ -17,5 +17,23 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: RUNNNNNNNN
         run: |
-             num=$(curl -s -X GET "https://api.github.com/repos/${{github.repository}}/pulls?state=all" | jq '.[] | select( .merge_commit_sha == "${{github.sha}}" ) | .number')
+             
              echo PR is $number
+      
+      - name: Generate Tag from PR Number
+        id: tag_version
+        run: |
+           NUM=$(curl -s -X GET "https://api.github.com/repos/${{github.repository}}/pulls?state=all" | jq '.[] | select( .merge_commit_sha == "${{github.sha}}" ) | .number')
+           if [[ -z ${NUM} ]] ;
+           then
+              NUM=$(date "+%Y%m%d%H%M")
+              echo "Not a pull request merge"
+              echo ::set-output name=tag::"PR-${NUM}"
+              echo ::set-output name=changelog::""
+           else
+              echo "Pull request merge"
+              BODY=$(curl -s -X GET "https://api.github.com/repos/${{github.repository}}/pulls/${NUM}" | jq -r ".body )
+              echo ::set-output name=tag::"PR-${NUM}"
+              echo ::set-output name=changelog::"${BODY}"
+           fi
+           echo ::set-output name=sha::"${{github.sha}}"
