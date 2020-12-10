@@ -28,7 +28,7 @@ jobs:
            then
               NUM=$(date "+%Y%m%d%H%M")
               echo "Not a pull request merge"
-              echo ::set-output name=tag::"PR-${NUM}"
+              echo ::set-output name=tag::"${NUM}"
               echo ::set-output name=changelog::""
            else
               echo "Pull request merge"
