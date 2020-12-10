@@ -12,4 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:     
       - name: Trigger Review Deployment
-        run: echo ${{github.events}}
+        run: echo ${{github.event}}
