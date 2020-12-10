@@ -32,7 +32,7 @@ jobs:
               echo ::set-output name=changelog::""
            else
               echo "Pull request merge"
-              BODY=$(curl -s -X GET "https://api.github.com/repos/${{github.repository}}/pulls/${NUM}" | jq -r ".body )
+              BODY=$(curl -s -X GET "https://api.github.com/repos/${{github.repository}}/pulls/${NUM}" | jq -r ".body" )
               echo ::set-output name=tag::"PR-${NUM}"
               echo ::set-output name=changelog::"${BODY}"
            fi
