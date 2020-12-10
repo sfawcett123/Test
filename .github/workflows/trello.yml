@@ -3,10 +3,7 @@ name: Read Trello
 
 on:
   pull_request:
-    types: [ opened , synchronize ]
-  push:
-    branches:
-      - master
+    types: [ opened , synchronize, edited]
   
 jobs:
   read_ticket:
