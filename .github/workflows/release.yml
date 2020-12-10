@@ -8,25 +8,9 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Create Release Tag
-        id: tagz
-        run: |
-             echo ::set-output name=short::$(echo $GITHUB_SHA | cut -c -7)
+     - name: Generate Tag from PR Number
+       id:   tag_version
+       uses: DFE-Digital/github-actions/GenerateReleaseFromSHA/action.yml@GetIntoTeaching/PR-INFO
+       with:
+         sha: ${{github.sha}}
                
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ steps.tagz.outputs.short }}
-          release_name: Release ${{ github.ref }}
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
-          draft: false
-          prerelease: false
