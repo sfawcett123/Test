@@ -8,6 +8,9 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
+     - name: Checkout
+       uses: actions/checkout@v2
+       
      - name: Generate Tag from PR Number
        id:   tag_version
        uses: DFE-Digital/github-actions/GenerateReleaseFromSHA/action.yml@GetIntoTeaching/PR-INFO
