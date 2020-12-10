@@ -4,7 +4,9 @@ name: Read Trello
 on:
   pull_request:
     types: [ opened , synchronize, edited]
-  
+  pull_request_review_comment:
+    types: [ created, edited ]
+    
 jobs:
   read_ticket:
     runs-on: ubuntu-latest
