@@ -16,4 +16,5 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-   
+      - name: Print Message
+        run: echo ${{github.event.message}}
