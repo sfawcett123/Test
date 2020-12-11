@@ -1,67 +1,21 @@
-name: Run Release
+name: Run Test Action
 
 on:
-  release:
   workflow_dispatch:
 
 jobs:
   development:
     name: Development Deployment
     runs-on: ubuntu-latest
-    outputs:
-      tag: ${{steps.tag_version.outputs.tag}}
     steps:
-       - name: Set variable
+       - name: Tests
          id: tag_version
-         run: echo ::set-output name=tag::"TEST 123"
+         uses: DFE-Digital/github-actions@GetIntoTeaching/DraftReleaseByTag 
+         with:
+           TAG: x1
+           TOKEN: ${{GITHUB_TOKEN}} 
+       
+       - name: Print
+         run:  echo ${{steps.tag_version.outputs.release_id}}
 
-  qa:
-     name: QA
-     runs-on: ubuntu-latest
-     needs: development
-     steps:
-       - name: steppy
-         run: exit 0
 
-  cypress:
-     name: cypress tests
-     runs-on: ubuntu-latest
-     needs: qa
-     steps:
-       - name: steppy
-         run: exit 0
-
-  production:
-     name: Production Deployment
-     runs-on: ubuntu-latest
-     needs: [ cypress , development ]
-     steps:
-       - name: Get Release Id from Tag
-         id:   tag_id
-         run:  echo ${{needs.development.outputs.tag}}
-          
-    
-       - name: Dump GitHub context
-         env:
-           GITHUB_CONTEXT: ${{ toJson(github) }}
-         run: echo "$GITHUB_CONTEXT"
-       - name: Dump job context
-         env:
-           JOB_CONTEXT: ${{ toJson(job) }}
-         run: echo "$JOB_CONTEXT"
-       - name: Dump steps context
-         env:
-           STEPS_CONTEXT: ${{ toJson(steps) }}
-         run: echo "$STEPS_CONTEXT"
-       - name: Dump runner context
-         env:
-            RUNNER_CONTEXT: ${{ toJson(runner) }}
-         run: echo "$RUNNER_CONTEXT"
-       - name: Dump strategy context
-         env:
-            STRATEGY_CONTEXT: ${{ toJson(strategy) }}
-         run: echo "$STRATEGY_CONTEXT"
-       - name: Dump matrix context
-         env:
-           MATRIX_CONTEXT: ${{ toJson(matrix) }}
-         run: echo "$MATRIX_CONTEXT"
