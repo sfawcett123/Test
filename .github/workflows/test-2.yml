@@ -13,7 +13,7 @@ jobs:
 
        - name: Tests
          id: tag_version
-         uses: DFE-Digital/github-actions@GetIntoTeaching/DraftReleaseByTag 
+         uses: DFE-Digital/github-actions/DraftReleaseByTag@GetIntoTeaching/DraftReleaseByTag 
          with:
            TAG: x1
            TOKEN: ${GITHUB_TOKEN} 
