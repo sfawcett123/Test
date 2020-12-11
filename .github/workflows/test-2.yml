@@ -13,7 +13,7 @@ jobs:
          uses: DFE-Digital/github-actions@GetIntoTeaching/DraftReleaseByTag 
          with:
            TAG: x1
-           TOKEN: ${{GITHUB_TOKEN}} 
+           TOKEN: ${GITHUB_TOKEN} 
        
        - name: Print
          run:  echo ${{steps.tag_version.outputs.release_id}}
