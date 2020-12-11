@@ -16,7 +16,7 @@ jobs:
          uses: DFE-Digital/github-actions/DraftReleaseByTag@GetIntoTeaching/DraftReleaseByTag 
          with:
            TAG: x1
-           TOKEN: secrets.ACTIONS_API_ACCESS_TOKEN
+           TOKEN: ${{secrets.ACTIONS_API_ACCESS_TOKEN}}
        
        - name: Print
          run:  echo ${{steps.tag_version.outputs.release_id}}
