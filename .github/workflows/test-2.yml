@@ -8,6 +8,9 @@ jobs:
     name: Development Deployment
     runs-on: ubuntu-latest
     steps:
+       - name: Check out the repo
+         uses: actions/checkout@v2
+
        - name: Tests
          id: tag_version
          uses: DFE-Digital/github-actions@GetIntoTeaching/DraftReleaseByTag 
