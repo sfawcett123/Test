@@ -12,3 +12,9 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+      
+      - name: Release Name
+        run:  echo "${{github.event.release.name}}"
+
+      - name: Release Body
+        run:  echo "${{github.event.release.body}}"
