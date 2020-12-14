@@ -13,12 +13,13 @@ jobs:
 
        - name: Tests
          id: tag_version
-         uses: DFE-Digital/github-actions/DraftReleaseByTag@getintoteaching/release_details 
+         uses: DFE-Digital/github-actions/DraftReleaseByTag@master 
          with:
            TAG: x1
            TOKEN: ${{secrets.ACTIONS_API_ACCESS_TOKEN}}
        
        - name: Print
+         if:  steps.tag_version.outputs.release_id
          run:  |
                echo ID ${{steps.tag_version.outputs.release_id}}
                echo NAME ${{steps.tag_version.outputs.release_name}}
