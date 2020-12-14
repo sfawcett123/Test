@@ -24,5 +24,20 @@ jobs:
                echo ID ${{steps.tag_version.outputs.release_id}}
                echo NAME ${{steps.tag_version.outputs.release_name}}
                echo BODY ${{steps.tag_version.outputs.release_body}}
+               
+       - name: Tests
+         id: tag_fail
+         uses: DFE-Digital/github-actions/DraftReleaseByTag@master 
+         with:
+           TAG: x9999999
+           TOKEN: ${{secrets.ACTIONS_API_ACCESS_TOKEN}}
+       
+       - name: Print
+         if:  steps.tag_fail.outputs.release_id
+         run:  |
+               echo ID ${{steps.tag_fail.outputs.release_id}}
+               echo NAME ${{steps.tag_fail.outputs.release_name}}
+               echo BODY ${{steps.tag_fail.outputs.release_body}}               
+               
 
 
