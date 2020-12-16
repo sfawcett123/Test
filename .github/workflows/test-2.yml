@@ -19,7 +19,7 @@ jobs:
        - name: Print
          if:  steps.tag_fail.outputs.release_id
          run:  |
-               echo URL = ${{env.SLACK_ICON))
+               echo URL = ${{env.SLACK_ICON}}
                echo APPLICATION = ${{env.APPLICATION}}           
                
 
