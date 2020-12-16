@@ -21,8 +21,8 @@ jobs:
                echo DOCKERHUB_REPOSITORY = ${{env.DOCKERHUB_REPOSITORY}}
                echo DOMAIN               = ${{env.DOMAIN}}
                echo PAAS_APPLICATION_NAME= ${{env.PAAS_APPLICATION_NAME}}
-               echo SLACK_FAILURE        = ${{env.SLACK_FAILURE}}
-               echo SLACK_SUCCESS        = ${{env.SLACK_SUCCESS}}    
+               echo SLACK_FAILURE        = "${{env.SLACK_FAILURE}}"
+               echo SLACK_SUCCESS        = "${{env.SLACK_SUCCESS}}"    
                
 
 
