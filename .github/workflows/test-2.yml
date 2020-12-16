@@ -14,8 +14,13 @@ jobs:
        - name: set-up-environment
          run: |
              FILE='.github/common_environment.yml'
-             VAR=$(sed -e 's/:[^:\/\/]/="/g;s/$/"/g;s/ *=/=/g;s/" */"/g' ${FILE})
-             echo ${VAR} >> $GITHUB_ENV
+             while read -r line
+             do
+                 VAR=$(echo ${line} | sed -e 's/:[^:\/\/]/="/g;s/$/"/g;s/ *=/=/g;s/" */"/g')
+                 echo ${VAR} >> $GITHUB_ENV
+             done < ${FILE}
+             
+             
                     
        - name: Print
          run:  |
