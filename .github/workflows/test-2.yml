@@ -11,33 +11,16 @@ jobs:
        - name: Check out the repo
          uses: actions/checkout@v2
 
-       - name: Tests
-         id: tag_version
-         uses: DFE-Digital/github-actions/DraftReleaseByTag@master 
-         with:
-           TAG: x1
-           TOKEN: ${{secrets.ACTIONS_API_ACCESS_TOKEN}}
-       
-       - name: Print
-         if:  steps.tag_version.outputs.release_id
-         run:  |
-               echo ID ${{steps.tag_version.outputs.release_id}}
-               echo NAME ${{steps.tag_version.outputs.release_name}}
-               echo BODY ${{steps.tag_version.outputs.release_body}}
-               
-       - name: Tests
-         id: tag_fail
-         uses: DFE-Digital/github-actions/DraftReleaseByTag@master 
-         with:
-           TAG: x9999999
-           TOKEN: ${{secrets.ACTIONS_API_ACCESS_TOKEN}}
-       
+       - name: set-up-environment
+         run: |
+             FILE='.github/common_environment.yml'
+             sed -e 's/:[^:\/\/]/="/g;s/$/"/g;s/ *=/=/g' ${FILE}  >> $GITHUB_ENV
+                    
        - name: Print
          if:  steps.tag_fail.outputs.release_id
          run:  |
-               echo ID ${{steps.tag_fail.outputs.release_id}}
-               echo NAME ${{steps.tag_fail.outputs.release_name}}
-               echo BODY ${{steps.tag_fail.outputs.release_body}}               
+               echo URL = ${{env.SLACK_ICON))
+               echo APPLICATION = ${{env.APPLICATION}}           
                
 
 
