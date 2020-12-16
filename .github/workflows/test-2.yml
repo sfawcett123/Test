@@ -14,7 +14,8 @@ jobs:
        - name: set-up-environment
          run: |
              FILE='.github/common_environment.yml'
-             sed -e 's/:[^:\/\/]/="/g;s/$/"/g;s/ *=/=/g' ${FILE}  >> $GITHUB_ENV
+             yq --help
+             sed -e 's/:[^:\/\/]/="/g;s/$/"/g;s/ *=/=/g' ${FILE} | sed -e >> $GITHUB_ENV
                     
        - name: Print
          if:  steps.tag_fail.outputs.release_id
