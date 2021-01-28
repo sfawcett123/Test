@@ -6,7 +6,7 @@ on:
 env:
   PR_NUMBER: 10
   RELEASE_ID: 35157528
-  TOKEN:   ${{GITHUB_TOKEN}}
+  TOKEN:   ${{secrets.GITHUB_TOKEN}}
       
 jobs:
   development:
