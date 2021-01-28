@@ -19,7 +19,7 @@ jobs:
        - name: Copy PR to Release
          run: |
               BODY=$(curl -s -X GET -H "Authorization: token ${{env.TOKEN}}" "https://api.github.com/repos/${{github.repository}}/pulls/${{env.PR_NUMBER}}" | jq -r ".body" )
-              echo "{\"body": \"${BODY}\" } " | curl -0 -s -X PATCH -H "Authorization: token ${{env.TOKEN}}" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{github.repository}}/releases/${{env.RELEASE_ID}} -d @-
+              echo "{ \"body\": \"${BODY}\" } " | curl -0 -s -X PATCH -H "Authorization: token ${{env.TOKEN}}" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{github.repository}}/releases/${{env.RELEASE_ID}} -d @-
                
 
 
