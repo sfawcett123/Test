@@ -13,7 +13,10 @@ jobs:
     name: Development Deployment
     runs-on: ubuntu-latest
     steps:
-
+       - name: Install jo
+         run: |
+             apt-get install jo
+             
        - name: Copy PR to Release
          run: |
               BODY=$(curl -s -X GET -H "Authorization: token ${{env.TOKEN}}" "https://api.github.com/repos/${{github.repository}}/pulls/${{env.PR_NUMBER}}" | jq -r ".body" )
