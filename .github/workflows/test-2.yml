@@ -13,8 +13,6 @@ jobs:
     name: Development Deployment
     runs-on: ubuntu-latest
     steps:
-       - name: Check out the repo
-         uses: actions/checkout@v2
 
        - name: Copy PR to Release
          run: |
