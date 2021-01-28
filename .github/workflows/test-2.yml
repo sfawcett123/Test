@@ -1,8 +1,12 @@
-name: Run Test Action
+name: Update Release
 
 on:
   workflow_dispatch:
 
+env:
+  PR_NUMBER: 10
+  RELEASE_ID: 35157528
+      
 jobs:
   development:
     name: Development Deployment
@@ -11,18 +15,10 @@ jobs:
        - name: Check out the repo
          uses: actions/checkout@v2
 
-       - name: set-up-environment
-         uses: DFE-Digital/github-actions/set-up-environment@master       
-                         
-       - name: Print
-         run:  |
-               echo URL                  = ${{env.SLACK_ICON}}
-               echo APPLICATION          = ${{env.APPLICATION}}     
-               echo DOCKERHUB_REPOSITORY = ${{env.DOCKERHUB_REPOSITORY}}
-               echo DOMAIN               = ${{env.DOMAIN}}
-               echo PAAS_APPLICATION_NAME= ${{env.PAAS_APPLICATION_NAME}}
-               echo SLACK_FAILURE        = "${{env.SLACK_FAILURE}}"
-               echo SLACK_SUCCESS        = "${{env.SLACK_SUCCESS}}"    
+       - name: Copy PR to Release
+         run: |
+              BODY=$(curl -s -X GET "https://api.github.com/repos/${{github.repository}}/pulls/${PR_NUMBER}" | jq -r ".body" )
+              curl -X PATCH -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${{github.repository}}/releases/${RELEASE_ID} -d '{"body":"$BODY"}'
                
 
 
