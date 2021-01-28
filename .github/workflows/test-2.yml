@@ -15,7 +15,7 @@ jobs:
     steps:
        - name: Install jo
          run: |
-             apt-get install jo
+             sudo apt-get install jo
              
        - name: Copy PR to Release
          run: |
