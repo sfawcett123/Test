@@ -3,25 +3,17 @@ name: Update Release
 on:
   workflow_dispatch:
 
-env:
-  PR_NUMBER: 10
-  RELEASE_ID: 35157528
-  TOKEN:   ${{secrets.GITHUB_TOKEN}}
-      
 jobs:
-  development:
-    name: Development Deployment
-    runs-on: ubuntu-latest
-    steps:
-       - name: Install jo
-         run: |
-             sudo apt-get install jo
-             
-       - name: Copy PR to Release
-         run: |
-              BODY=$(curl -s -X GET -H "Authorization: token ${{env.TOKEN}}" "https://api.github.com/repos/${{github.repository}}/pulls/${{env.PR_NUMBER}}" | jq -r ".body" )
-              jo body="${BODY}" > tempfile
-              curl -0 -X PATCH -H "Authorization: token ${{env.TOKEN}}" https://api.github.com/repos/${{github.repository}}/releases/${{env.RELEASE_ID}} --data-binary @tempfile
-               
-
+  update-release:
+     runs-on: ubuntu-latest
+     steps:
+     - name: Checkout
+       uses: actions/checkout@main
+       
+     - name: Copt
+       uses: DFE-Digital/github-actions/CopyPRtoRelease@CopyPRtoRelease/create
+       with:
+         PR_NUMBER: 10
+         RELEASE_ID: 35157528
+         TOKEN: ${{secrets.GITHUB_TOKEN}}
 
