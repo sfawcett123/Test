@@ -10,10 +10,9 @@ jobs:
      - name: Checkout
        uses: actions/checkout@main
        
-     - name: Copt
-       uses: DFE-Digital/github-actions/CopyPRtoRelease@CopyPRtoRelease/create
+     - name: Get Release Id from Tag
+       id: tag_id
+       uses: DFE-Digital/github-actions/DraftReleaseByTag@master
        with:
-         PR_NUMBER: 10
-         RELEASE_ID: 35157528
-         TOKEN: ${{secrets.GITHUB_TOKEN}}
-
+         TAG: xxxxx
+         TOKEN: ${{ secrets.ACTIONS_API_ACCESS_TOKEN }}
