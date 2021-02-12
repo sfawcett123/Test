@@ -23,7 +23,7 @@ jobs:
               echo ::set-output name=release_id::""
            else
               echo "xxxxx found id is ${NUM}"
-              echo ${JSON} | tr '\r\n' ' ' | jq -r '.body' > tempfile
+              echo "BODY=$(${JSON} | tr '\r\n' ' ' | jq -r '.body')" >> $GITHUB_ENV
               echo ::set-output name=release_name::$(  echo ${JSON} | tr '\r\n' ' ' | jq -r '.name')
               echo ::set-output name=release_sha::$(   echo ${JSON} | tr '\r\n' ' ' | jq -r '.target_commitish' )
               echo ::set-output name=release_id::"${NUM}"
@@ -34,7 +34,7 @@ jobs:
        uses: rtCamp/action-slack-notify@master
        env:
           SLACK_TITLE: "Mulit line Test"
-          SLACK_MESSAGE: |
-                         "${{steps.release.outputs.release_body}}"
+          SLACK_MESSAGE: |<
+                         "${{env.BODY}}"
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           MSG_MINIMAL: true
