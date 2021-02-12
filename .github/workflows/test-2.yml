@@ -17,6 +17,10 @@ jobs:
          TAG: xxxxx
          TOKEN: ${{ secrets.ACTIONS_API_ACCESS_TOKEN }}
          
+     - name: Display
+       run: |
+            echo  "${{steps.tag_id.outputs.release_body}}"   
+            
      - name: Slack Release Notification
        if: steps.tag_id.outputs.release_id
        uses: rtCamp/action-slack-notify@master
