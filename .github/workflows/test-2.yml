@@ -22,6 +22,7 @@ jobs:
        uses: rtCamp/action-slack-notify@master
        env:
           SLACK_TITLE: "Mulit line Test"
-          SLACK_MESSAGE: ${{steps.tag_id.outputs.release_body}}
+          SLACK_MESSAGE: |
+                         ${{steps.tag_id.outputs.release_body}}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           MSG_MINIMAL: true
