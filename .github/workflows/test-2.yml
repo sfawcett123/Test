@@ -12,7 +12,7 @@ jobs:
        
      - name: Get Release Id from Tag
        id: tag_id
-       uses: DFE-Digital/github-actions/DraftReleaseByTag@master
+       uses: DFE-Digital/github-actions/DraftReleaseByTag@sfawcett123-patch-1
        with:
          TAG: xxxxx
          TOKEN: ${{ secrets.ACTIONS_API_ACCESS_TOKEN }}
