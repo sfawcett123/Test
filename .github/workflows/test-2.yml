@@ -12,7 +12,7 @@ jobs:
      
      - name: Find Release
        id: tag_id
-       uses: DFE-Digital/github-actions/DraftReleaseByTag@sfawcett123-patch-1
+       uses: DFE-Digital/github-actions/DraftReleaseByTag@master
        with:
            TAG:   xxxxx
            TOKEN: ${{secrets.ACTIONS_API_ACCESS_TOKEN}}        
@@ -25,10 +25,3 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           MSG_MINIMAL: true
           
-     - name: Slack Release Notification
-       uses: rtCamp/action-slack-notify@master
-       env:
-          SLACK_TITLE:   OLD Method test
-          SLACK_MESSAGE: ${{ steps.tag_id.outputs.release_body }}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          MSG_MINIMAL: true
