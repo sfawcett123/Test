@@ -11,8 +11,8 @@ jobs:
        uses: actions/checkout@main
      
      - name: Find Release
-       id: release
-       uses: DFE-Digital/github-actions@sfawcett123-patch-1
+       id: tag_id
+       uses: DFE-Digital/github-actions/DraftReleaseByTag@sfawcett123-patch-1
        with:
            TAG:   xxxxx
            TOKEN: ${secrets.ACTIONS_API_ACCESS_TOKEN}        
@@ -21,6 +21,6 @@ jobs:
        uses: rtCamp/action-slack-notify@master
        env:
           SLACK_TITLE:   Multi line Test
-          SLACK_MESSAGE: ${{ fromJson( steps.release.outputs.release_body) }}
+          SLACK_MESSAGE: ${{ fromJson( steps.tag_id.outputs.release_body) }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           MSG_MINIMAL: true
