@@ -12,22 +12,10 @@ jobs:
      
      - name: Find Release
        id: release
-       shell: pwsh
-       run: |
-            $json = $JSON=Invoke-RestMethod -Uri “https://api.github.com/repos/sfawcett123/Test/releases”
-            $myTag = $json.Where{ $_.tag_name -eq 'xxxxx' }
-            if ( !$myTag.id )
-            {
-                echo "xxxxxx Tag Not Found"
-                echo ::set-output name=release_body::""
-            }
-            else
-            {
-                $body=$myTag.body
-                echo $myTag.id
-                echo "::set-output name=release_body::$( $body | ConvertTo-Json -Compress ) "
-            }
-    
+       uses: DFE-Digital/github-actions@sfawcett123-patch-1
+       with:
+           TAG:   xxxxx
+           TOKEN: ${secrets.ACTIONS_API_ACCESS_TOKEN}        
             
      - name: Slack Release Notification
        uses: rtCamp/action-slack-notify@master
