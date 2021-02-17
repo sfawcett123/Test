@@ -18,10 +18,10 @@ jobs:
            if [[ -z ${NUM} ]] ;
            then
               echo "xxxxx not found"
-              echo ::set-output name=release_id::""
+              echo ::set-output name=release_body::""
            else
               echo "xxxxx found id is ${NUM}"
-              echo ::set-output name=release_body::"\"$( echo ${JSON} | tr '\r\n' ' ' | jq -r '.body')\""
+              echo "::set-output name=release_body::$( echo ${JSON} | tr '\r\n' ' ' | jq -r '.body' | tr '\r\n' ' ' | jq -R .| jq -s .)"
            fi
     
             
@@ -29,6 +29,6 @@ jobs:
        uses: rtCamp/action-slack-notify@master
        env:
           SLACK_TITLE: "Mulit line Test"
-          SLACK_MESSAGE: ${{ steps.release.outputs.release_body }}
+          SLACK_MESSAGE: ${{ fromJson( steps.release.outputs.release_body) }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           MSG_MINIMAL: true
