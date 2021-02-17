@@ -21,7 +21,7 @@ jobs:
               echo ::set-output name=release_body::""
            else
               echo "xxxxx found id is ${NUM}"
-              echo "::set-output name=release_body::$( echo ${JSON} | tr '\r\n' ' ' | jq -r '.body' | tr '\r\n' ' ' | jq -R .| jq -s .)"
+              echo "::set-output name=release_body::$( echo ${JSON} | tr '\r\n' ' ' | jq -r '.body' |  jq -R .| jq -s . | tr '\r\n' ' ')"
            fi
     
             
