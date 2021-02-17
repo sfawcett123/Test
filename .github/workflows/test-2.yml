@@ -13,9 +13,7 @@ jobs:
      - name: Find Release
        id: release
        run: |
-           JSON=$( curl -s --header "Authorization: token ${{ secrets.ACTIONS_API_ACCESS_TOKEN}}"  \
-                       -X GET "https://api.github.com/repos/${{github.repository}}/releases" | \
-                       jq '.[] | select( .tag_name=="xxxxx" ) ')
+           JSON=$( curl -s -X GET "https://api.github.com/repos/sfawcett123/Test/releases" |  jq '.[] | select( .tag_name=="xxxxx" )' )
            NUM=$( echo ${JSON} | tr '\r\n' ' ' | jq '.id')
            if [[ -z ${NUM} ]] ;
            then
