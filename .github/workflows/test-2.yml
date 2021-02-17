@@ -24,3 +24,11 @@ jobs:
           SLACK_MESSAGE: ${{ fromJson( steps.tag_id.outputs.release_body) }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           MSG_MINIMAL: true
+          
+     - name: Slack Release Notification
+       uses: rtCamp/action-slack-notify@master
+       env:
+          SLACK_TITLE:   OLD Method test
+          SLACK_MESSAGE: ${{ steps.tag_id.outputs.release_body }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          MSG_MINIMAL: true
