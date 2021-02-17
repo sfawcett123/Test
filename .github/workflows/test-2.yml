@@ -15,7 +15,7 @@ jobs:
        uses: DFE-Digital/github-actions/DraftReleaseByTag@sfawcett123-patch-1
        with:
            TAG:   xxxxx
-           TOKEN: ${secrets.ACTIONS_API_ACCESS_TOKEN}        
+           TOKEN: ${{secrets.ACTIONS_API_ACCESS_TOKEN}}        
             
      - name: Slack Release Notification
        uses: rtCamp/action-slack-notify@master
