@@ -12,17 +12,21 @@ jobs:
      
      - name: Find Release
        id: release
+       shell: pwsh
        run: |
-           JSON=$( curl -s -X GET "https://api.github.com/repos/sfawcett123/Test/releases" |  jq '.[] | select( .tag_name=="xxxxx" )' )
-           NUM=$( echo ${JSON} | tr '\r\n' ' ' | jq '.id')
-           if [[ -z ${NUM} ]] ;
-           then
-              echo "xxxxx not found"
-              echo ::set-output name=release_body::""
-           else
-              echo "xxxxx found id is ${NUM}"
-              echo "::set-output name=release_body::$( echo ${JSON} | tr '\r\n' ' ' | jq -r '.body' |  jq -R .| jq -s . | tr '\r\n' ' ')"
-           fi
+            $json = $JSON=Invoke-RestMethod -Uri “https://api.github.com/repos/sfawcett123/Test/releases”
+            $myTag = $json.Where{ $_.tag_name -eq 'xxxxx' }
+            if ( !$myTag.id )
+            {
+                echo "xxxxxx Tag Not Found"
+                echo ::set-output name=release_body::""
+            }
+            else
+            {
+                $body=$myTag.body
+                echo $myTag.id
+                echo "::set-output name=release_body::$(@{body=$body}| ConvertTo-Json -Compress)"
+            }
     
             
      - name: Slack Release Notification
