@@ -25,14 +25,14 @@ jobs:
             {
                 $body=$myTag.body
                 echo $myTag.id
-                echo "::set-output name=release_body::$(@{body=$body}| ConvertTo-Json -Compress)"
+                echo "::set-output name=release_body::$( $body | ConvertTo-Json -Compress ) "
             }
     
             
      - name: Slack Release Notification
        uses: rtCamp/action-slack-notify@master
        env:
-          SLACK_TITLE: "Mulit line Test"
+          SLACK_TITLE:   Multi line Test
           SLACK_MESSAGE: ${{ fromJson( steps.release.outputs.release_body) }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           MSG_MINIMAL: true
