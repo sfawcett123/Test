@@ -4,6 +4,8 @@ on:
      types: [published]
   pull_request:
     types: [assigned, opened, synchronize, reopened,   pull_request, edited, reopened ]
+  pull_request_review:
+    types: [edited, dismissed, submitted]
     
 jobs:
   release:
