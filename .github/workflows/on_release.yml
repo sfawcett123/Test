@@ -2,7 +2,9 @@ name: ON_RELEASE
 on:
   release:
      types: [published]
-
+  pull_request:
+    types: [assigned, opened, synchronize, reopened,   pull_request, edited, reopened ]
+    
 jobs:
   release:
     runs-on: ubuntu-latest
