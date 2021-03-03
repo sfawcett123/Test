@@ -7,16 +7,14 @@ jobs:
   update-release:
      runs-on: ubuntu-latest
      steps:
-     - name: Checkout
-       uses: actions/checkout@main
-    
-     - name: Chicken
-       run:  exit(1)
-     
-     - name: Dump steps context
-       if: always()
-       env:
-          STEPS_CONTEXT: ${{ toJson(steps) }}
-       run: echo "$STEPS_CONTEXT"       
+        - uses: azure/login@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+        - name: Validate Key Vault Secrets
+          uses: DFE-Digital/github-actions/validate-key-vault-secrets@master
+          with:
+            KEY_VAULT: ${{ secrets.KEY_VAULT }}
+            SECRETS: TTA-KEY
           
           
