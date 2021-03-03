@@ -15,6 +15,6 @@ jobs:
           uses: DFE-Digital/github-actions/validate-key-vault-secrets@master
           with:
             KEY_VAULT: ${{ secrets.KEY_VAULT }}
-            SECRETS: TTA-KEY
+            SECRETS: TTA_KEY
           
           
