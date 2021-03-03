@@ -9,19 +9,14 @@ jobs:
      steps:
      - name: Checkout
        uses: actions/checkout@main
+    
+     - name: Chicken
+       run:  exit(1)
      
-     - name: Find Release
-       id: tag_id
-       uses: DFE-Digital/github-actions/DraftReleaseByTag@master
-       with:
-           TAG:   xxxxx
-           TOKEN: ${{secrets.ACTIONS_API_ACCESS_TOKEN}}        
-            
-     - name: Slack Release Notification
-       uses: rtCamp/action-slack-notify@master
+     - name: Dump steps context
+       if: always()
        env:
-          SLACK_TITLE:   Multi line Test
-          SLACK_MESSAGE: ${{ fromJson( steps.tag_id.outputs.release_body) }}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          MSG_MINIMAL: true
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+       run: echo "$STEPS_CONTEXT"       
+          
           
