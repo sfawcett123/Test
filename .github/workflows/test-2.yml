@@ -1,4 +1,4 @@
-name: Update Release
+name: Update Trello
 
 on:
   workflow_dispatch:
@@ -7,14 +7,10 @@ jobs:
   update-release:
      runs-on: ubuntu-latest
      steps:
-        - uses: azure/login@v1
+        - name: Update Trello
+          uses: DFE-Digital/github-actions/UpdateTrello@Get_into_teaching/Update-trello
           with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-        - name: Validate Key Vault Secrets
-          uses: DFE-Digital/github-actions/validate-key-vault-secrets@master
-          with:
-            KEY_VAULT: ${{ secrets.KEY_VAULT }}
-            SECRETS: TTA_KEY
+            TRELLO-KEY:   ${{ secrets.TRELLO-KEY}}
+            TRELLO-TOKEN: ${{ secrets.TRELLO-TOKEN }}
           
           
