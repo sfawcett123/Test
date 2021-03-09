@@ -10,7 +10,9 @@ jobs:
         - name: Update Trello
           uses: DFE-Digital/github-actions/UpdateTrello@Get_into_teaching/Update-trello
           with:
-            TRELLO-KEY:   ${{ secrets.TRELLO-KEY}}
-            TRELLO-TOKEN: ${{ secrets.TRELLO-TOKEN }}
+            MESSAGE:      "HELLO"
+            CARD:         https://trello.com/c/gFLtDH7X/1-eg-book-flights            
+            TRELLO-KEY:   ${{ secrets.TRELLO_KEY}}
+            TRELLO-TOKEN: ${{ secrets.TRELLO_TOKEN }}
           
           
