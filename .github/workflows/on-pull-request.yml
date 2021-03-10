@@ -2,10 +2,8 @@ name: Pull Request Test
 
 on:
   pull_request:
-    types: [ opened , synchronize ]
-  push:
-    branches:
-      - master
+    types: [ opened , synchronize , edited ]
+
   
 jobs:
   add_labels:
@@ -14,7 +12,7 @@ jobs:
       - name: Extract Pull Request url
         id: pr-url
         run: |
-          echo ::set-output name=url::${$DATA.pull_request.html_url}
+          echo ${DATA}
         env:
           DATA: ${{ toJson(GITHUB_EVENT_PATH) }}
       
