@@ -9,10 +9,8 @@ jobs:
   add_labels:
     runs-on: ubuntu-latest
     steps:
-      - name: Extract Pull Request url
-        id: pr-url
-        run: |
-          echo ${DATA}
+      - name: Dump GitHub context
         env:
-          DATA: ${{ toJson(github.base_ref) }}
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
       
