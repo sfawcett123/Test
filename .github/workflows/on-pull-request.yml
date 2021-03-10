@@ -10,5 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
-        run: echo ${{ fromJSON(github.event.body) }}
+        run:  echo ${BODY}
+        env:  
+           BODY: ${{ fromJSON(github.event.body) }}
       
