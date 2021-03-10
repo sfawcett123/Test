@@ -13,32 +13,6 @@ jobs:
     steps:
       - name: Dump GitHub context
         env:
-          GITHUB_CONTEXT: ${{ toJson(github).body }}
+          GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - name: RUNNNNNNNN
-        run: |
-             
-             echo PR is $number
       
-      - name: Generate Tag from PR Number
-        id: tag_version
-        run: |
-           NUM=$(curl -s -X GET "https://api.github.com/repos/${{github.repository}}/pulls?state=all" | jq '.[] | select( .merge_commit_sha == "${{github.sha}}" ) | .number')
-           if [[ -z ${NUM} ]] ;
-           then
-              NUM=$(date "+%Y%m%d%H%M")
-              echo "Not a pull request merge"
-              echo ::set-output name=tag::"${NUM}"
-              echo ::set-output name=changelog::""
-           else
-              echo "Pull request merge"
-              BODY=$(curl -s -X GET "https://api.github.com/repos/${{github.repository}}/pulls/${NUM}" | jq -r ".body" )
-              echo ::set-output name=tag::"PR-${NUM}"
-              echo ::set-output name=changelog::"${BODY}"
-           fi
-           echo ::set-output name=sha::"${{github.sha}}"
-      
-      - name: Outputs
-        run:  |
-              echo "TAG = ${{steps.tag_version.outputs.tag}}"
-              echo "BODY = ${{steps.tag_version.outputs.body}}"
