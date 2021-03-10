@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
-        run:  echo ${github.event}
+        run:  echo ${ fromJSON(github.event) }
 
       
