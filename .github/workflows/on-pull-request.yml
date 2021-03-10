@@ -11,8 +11,10 @@ jobs:
   add_labels:
     runs-on: ubuntu-latest
     steps:
-      - name: Dump GitHub context
+      - name: Extract Pull Request url
+        id: pr-url
+        run: |
+          echo ::set-output name=url::${$DATA.pull_request.html_url}
         env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+          DATA: ${{ toJson(GITHUB_EVENT_PATH) }}
       
