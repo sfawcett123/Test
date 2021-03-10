@@ -14,5 +14,5 @@ jobs:
         run: |
           echo ${DATA}
         env:
-          DATA: ${{ toJson(GITHUB_EVENT_PATH) }}
+          DATA: ${{ toJson(github.base_ref) }}
       
