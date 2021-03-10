@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
-        run:  echo ${{github.pull_request.body }}
+        run:  echo ${{github.event.pull_request.body }}
 
       
