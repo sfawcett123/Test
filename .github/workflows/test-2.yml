@@ -11,7 +11,7 @@ jobs:
           uses: DFE-Digital/github-actions/AddTrelloComment@Get_into_teaching/Update-trello
           with:
             MESSAGE:      "https://github.com/sfawcett123/Test/blob/master/.github/workflows/test-2.yml"
-            CARD:         https://trello.com/c/gFLtDH7X/1-eg-book-flights            
+            CARD:         "THIS IS NOT A VALID CARD"          
             TRELLO-KEY:   ${{ secrets.TRELLO_KEY}}
             TRELLO-TOKEN: ${{ secrets.TRELLO_TOKEN }}
           
