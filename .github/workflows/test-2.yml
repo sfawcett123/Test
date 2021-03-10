@@ -8,7 +8,7 @@ jobs:
      runs-on: ubuntu-latest
      steps:
         - name: Update Trello
-          uses: DFE-Digital/github-actions/UpdateTrello@Get_into_teaching/Update-trello
+          uses: DFE-Digital/github-actions/AddTrelloComment@Get_into_teaching/Update-trello
           with:
             MESSAGE:      "HELLO"
             CARD:         https://trello.com/c/gFLtDH7X/1-eg-book-flights            
