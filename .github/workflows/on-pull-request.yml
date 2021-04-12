@@ -11,12 +11,9 @@ jobs:
     steps:        
 
       - name: Add Trello Comment
-        uses: DFE-Digital/github-actions/AddTrelloComment@master
-        with:
-          MESSAGE:      ${{ github.event.pull_request.html_url }} 
-          CARD:         ${{ github.event.pull_request.body }}           
-          TRELLO-KEY:   ${{ secrets.TRELLO_KEY}}
-          TRELLO-TOKEN: ${{ secrets.TRELLO_TOKEN }}
+        run:
+             echo ${{ github.event.pull_request.user.login }}
+
             
 
 
