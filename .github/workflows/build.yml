@@ -11,7 +11,7 @@ jobs:
          uses: DFE-Digital/github-actions/SendToLogit@logit
          with:
            LOGIT-API-KEY: ${{secrets.LOGIT_API_KEY}}
-           logtype: github
+           logtype: "github"
            JSON: |
                  '{\"Application\":\"Get-into-Teaching-Cheese\",
                    \"Status\":\"Success\",\
