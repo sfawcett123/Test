@@ -13,7 +13,7 @@ jobs:
            LOGIT-API-KEY: ${{secrets.LOGIT_API_KEY}}
            logtype: "github"
            JSON: |
-                 "{\"Application\":\"Get-into-Teaching-Cheese\",
+                 "{\"Application\":\"Get-into-Teaching-Cheese\", \
                    \"Status\":\"Success\",\
                    \"Action\":\"Deploy\",\
                    \"Environment\": \"Production\",\
