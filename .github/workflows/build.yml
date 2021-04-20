@@ -1,13 +1,13 @@
-name: Login Test
+name:  Test
 on:
   workflow_dispatch:
 
 jobs:
   turnstyle:
     runs-on: ubuntu-latest
-    environment: Development
     steps:
     
-      - uses: Azure/login@v1
-        with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
+       - name: Tests
+         uses: DFE-Digital/github-actions/SendToLogit@logit
+         with:
+           LOGIT_API_KEY: ${{secrets.LOGIT_API_KEY}}
