@@ -10,7 +10,7 @@ jobs:
        - name: Tests
          uses: DFE-Digital/github-actions/SendToLogit@logit
          with:
-           LOGIT_API_KEY: ${{secrets.LOGIT_API_KEY}}
+           LOGIT-API-KEY: ${{secrets.LOGIT_API_KEY}}
            JSON:   |
                    '{"Application":"Get-into-Teaching-Cheese", 
                      "Status":"Success",
