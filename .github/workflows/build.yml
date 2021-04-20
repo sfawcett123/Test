@@ -12,8 +12,4 @@ jobs:
          with:
            LOGIT-API-KEY: ${{secrets.LOGIT_API_KEY}}
            JSON:   |
-                   '{"Application":"Get-into-Teaching-Cheese", 
-                     "Status":"Success",
-                     "Action":"Deploy",
-                     "Environment": "Production",
-                     "Version": "1" }'
+                   '{"Application":"Get-into-Teaching-Cheese", "Status":"Success","Action":"Deploy","Environment": "Production","Version": "1" }'
