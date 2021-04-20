@@ -11,4 +11,9 @@ jobs:
          uses: DFE-Digital/github-actions/SendToLogit@logit
          with:
            LOGIT_API_KEY: ${{secrets.LOGIT_API_KEY}}
-           JSON:          '{"Application":"Get-into-Teaching-Cheese", "Status":"Success", "Action":"Deploy", "Environment": "Production", "Version": "1" }'
+           JSON:   |
+                   '{"Application":"Get-into-Teaching-Cheese", 
+                     "Status":"Success",
+                     "Action":"Deploy",
+                     "Environment": "Production",
+                     "Version": "1" }'
