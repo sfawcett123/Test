@@ -1,18 +1,19 @@
 name: Pull Request Test
 
 on:
-  pull_request:
-    types: [ opened , synchronize , edited ]
+  workflow_dispatch:
 
-  
 jobs:
   add_labels:
     runs-on: ubuntu-latest
     steps:        
-
-      - name: Add Trello Comment
-        run:
-             echo ${{ github.event.pull_request.user.login }}
+    
+    - name: Copy PR Info to Release
+      uses: DFE-Digital/github-actions/CopyPRtoRelease@restrict_to_title
+      with:
+          PR_NUMBER:  14
+          RELEASE_ID: xxxxx
+          TOKEN: ${{secrets.GITHUB_TOKEN}}   
 
             
 
