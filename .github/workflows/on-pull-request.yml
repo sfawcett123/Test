@@ -13,7 +13,8 @@ jobs:
       with:
           PR_NUMBER:  14
           RELEASE_ID: xxxxx
-          TOKEN: ${{secrets.GITHUB_TOKEN}}   
+          TOKEN: ${{secrets.GITHUB_TOKEN}}
+          USERS_TO_AVOID: sfawcett123
 
             
 
