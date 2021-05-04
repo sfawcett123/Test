@@ -9,13 +9,7 @@ jobs:
     steps:        
     
     - name: Copy PR Info to Release
-      uses: DFE-Digital/github-actions/CopyPRtoRelease@restrict_to_title
-      with:
-          PR_NUMBER:  14
-          RELEASE_ID: xxxxx
-          TOKEN: ${{secrets.GITHUB_TOKEN}}
-          USERS_TO_AVOID: sfawcett123
-
+      run: echo ${{ github.actor }}
             
 
 
