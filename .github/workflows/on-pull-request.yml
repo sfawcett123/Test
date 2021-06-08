@@ -2,6 +2,9 @@ name: Pull Request Test
 
 on:
   workflow_dispatch:
+  repository_dispatch:
+    types:
+      - webhook
 
 jobs:
   add_labels:
